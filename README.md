@@ -15,7 +15,8 @@ Requirements
  * You need to have access to all the defined nodes
  * Role should be installed using Ansibel Galaxy
  
- ```yml
+ ```bash
+ ansible-galaxy install arman_keyoumarsi.wireguard_site_to_site_network
  ```
 
 Role Variables
@@ -23,9 +24,9 @@ Role Variables
 
 There are Additional variables that can be setup for the following:
 
- * wireguard_path: change the default path for config and key files.
- * wireguard_network_name: Change the default Wireguard interface name
- * wireguard_clinet_peers: Enable additional client configuration for mobile clients
+ * _wireguard_path_: change the default path for config and key files.
+ * _wireguard_network_name_: Change the default Wireguard interface name
+ * _wireguard_clinet_peers_: Enable additional client configuration for mobile clients
     * The shall include sub vars as follow:
       * '- client_name: Client name' 
       * ip: Wireguard ip of the client
@@ -33,13 +34,13 @@ There are Additional variables that can be setup for the following:
 
 To make sure we have full flexibility for configuring each node independently there are number of required variables that need to be defined in hostvars. 
 
- * local_ip: This is the local ip of the server and it is required to find the NIC for NAT rules.
- * public_ip: This is the external ip of the server where it can be reached from internet (endpoint)
- * wg_ip: The internal ip you want to use for WireGuard network
- * ListenPort: VPN port for each server
- * allowed_ips: This is the range of networks you want to allow other servers have access to. This variable is for Site to Site configuration
- * wireguard_post_up: To enable internet NAT rules for external client access to internet in each server.
- * wireguard_post_down: To disable internet NAT rules for external client access to internet in each server.
+ * _local_ip_: This is the local ip of the server and it is required to find the NIC for NAT rules.
+ * _public_ip_: This is the external ip of the server where it can be reached from internet (endpoint)
+ * _wg_ip_: The internal ip you want to use for WireGuard network
+ * _ListenPort_: VPN port for each server
+ * _allowed_ips_: This is the range of networks you want to allow other servers have access to. This variable is for Site to Site configuration
+ * _wireguard_post_up_: To enable internet NAT rules for external client access to internet in each server.
+ * _wireguard_post_down_: To disable internet NAT rules for external client access to internet in each server.
 
 A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
