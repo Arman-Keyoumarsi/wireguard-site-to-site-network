@@ -13,6 +13,10 @@ Requirements
 
  * You need to make sure the firewall ports are open for the external connections
  * You need to have access to all the defined nodes
+ * Role should be installed using Ansibel Galaxy
+ 
+ ```yml
+ ```
 
 Role Variables
 --------------
