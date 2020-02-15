@@ -1,0 +1,17 @@
+---
+- hosts: wg
+  gather_facts: yes
+  become: yes
+  become_method: sudo
+  roles:
+    - wireguard-site-to-site-network
+  vars:
+      wireguard_client_peers:
+          - client_name: mobile
+            ip: 10.13.113.10/32
+            key: if4Za/1xhb1HgpRZqA3AN5n8d4At8FWYZYsqNo0XYi8=
+          - client_name: Laptop
+            ip: 10.13.113.11/32
+            key: if4Za/1xhb1HgpRZqA3AN5n8d4At8FWYZYsqNo0XYi8=
+      
+

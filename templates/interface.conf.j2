@@ -1,0 +1,30 @@
+[Interface]
+Address = {{ wg_ip }}
+PrivateKey = {{ private.content | b64decode | trim }}
+{% if wireguard_post_up %}
+PostUp = iptables -A FORWARD -i {{ wireguard_network_name }} -j ACCEPT; iptables -t nat -A POSTROUTING -o {{ target_interface }} -j MASQUERADE;
+{% endif %}
+{% if wireguard_post_down %}
+PostDown = iptables -D FORWARD -D {{ wireguard_network_name }} -j ACCEPT; iptables -t nat -D POSTROUTING -o {{ target_interface }} -j MASQUERADE;
+{% endif %}
+ListenPort = {{ ListenPort }}
+
+{% for node in play_hosts %}
+{% if inventory_hostname != hostvars[node]['inventory_hostname'] %}
+[Peer]
+PublicKey = {{ hostvars[node].public.content | b64decode | trim }}
+AllowedIPs = {{ hostvars[node].allowed_ips }}
+Endpoint = {{ hostvars[node].public_ip }}:{{ hostvars[node]. ListenPort }}
+
+{% endif %}
+{% endfor %}
+
+{% if wireguard_client_peers  %}
+{% for node in wireguard_client_peers %}
+# {{ node.client_name  }}
+[Peer]
+PublicKey = {{ node.key }}
+AllowedIPs = {{ node.ip }}
+
+{% endfor %}
+{% endif %}

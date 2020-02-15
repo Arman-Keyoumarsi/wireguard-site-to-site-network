@@ -1,0 +1,90 @@
+---
+# tasks file for wireguard-site-to-site-network
+
+- name: Execute the command in remote shell
+  shell: echo "WireGuard Intial Setup Log" > wgsetup.log
+  args:
+    creates: wgsetup.log
+
+- name: Get the nic based on the known IP address
+  set_fact:
+    target_interface: "{{ item }}"
+  when: >
+    (hostvars[inventory_hostname]['ansible_%s' % item]|default({}))
+    .get('ipv4', {}).get('address') == local_ip
+    or
+    local_ip in ((hostvars[inventory_hostname]['ansible_%s' % item]|default({}))
+    .get('ipv4_secondaries'))|map(attribute='address')|list
+  with_items:
+    - "{{ ansible_interfaces }}"
+
+- debug:
+    msg: >-
+      found interface {{ target_interface }}
+      with address {{ local_ip }}
+
+- name: Display the config
+  debug:
+    msg: "The networks {{ ansible_interfaces }}"
+
+- name: Add wireguard ppa (Ubuntu)
+  apt_repository:
+    repo: 'ppa:wireguard/wireguard'
+    state: present
+  when:
+    - ansible_distribution == "Ubuntu"
+
+- name: install only when not installed
+  apt:
+      name: wireguard
+      state: present
+
+- name: Read private key if it exist
+  stat:
+    path: "{{ wireguard_path }}/privatekey"
+  register: privatekey
+
+- name: Generate wireguard keys
+  shell: "umask 077; wg genkey | tee privatekey | wg pubkey > publickey"
+  args:
+      chdir: "{{ wireguard_path  }}/"
+  when: not privatekey.stat.exists
+
+- name: Read private key
+  slurp:
+    src: "{{ wireguard_path }}/privatekey"
+  register: private
+
+- name: Read public key
+  slurp:
+    src: "{{ wireguard_path }}/publickey"
+  register: public  
+
+- name: Generate configs
+  template:
+    src: interface.conf.j2
+    dest: "{{ wireguard_path }}/{{ wireguard_network_name }}.conf"
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o="
+  register: config
+
+- name: Start and enable wg-quick systemd service
+  systemd:
+    name: "wg-quick@{{ wireguard_network_name }}"
+    enabled: yes
+    state: started
+
+- name: Restart wg-quick service if required
+  systemd:
+    name: "wg-quick@{{ wireguard_network_name }}"
+    state: restarted
+  when: config.changed
+
+- name: Remove useless packages from the cache
+  apt:
+      autoclean: yes
+
+- name: Remove dependencies that are no longer required
+  apt:
+      autoremove: yes

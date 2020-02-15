@@ -1,0 +1,10 @@
+---
+# vars file for wireguard-site-to-site-network
+
+#This is the path for both the config and keys
+wireguard_path: "/etc/wireguard"
+# Wiregaurd network interface name
+wireguard_network_name: "wg0" 
+
+wireguard_clinet_peers: false
+

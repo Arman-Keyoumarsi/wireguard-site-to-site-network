@@ -1,0 +1,29 @@
+galaxy_info:
+  author: Arman Keyoumarsi
+  description: Build site to site  vpn network between all the given nodes with all acting as a Server
+  company: Rmaan LLC
+
+  # If the issue tracker for your role is not on github, uncomment the
+  # next line and provide a value
+  # issue_tracker_url: http://example.com/issue/tracker
+
+  license: license MIT
+
+  min_ansible_version: 2.9
+
+  platforms:
+  - name: Ubuntu
+    versions:
+     - all
+  - name: Debian
+    versions:
+     - all
+  
+  galaxy_tags:
+    - WireGuard
+    - Site-to-Site
+    - VPN
+    - Network
+
+dependencies: []
+  
