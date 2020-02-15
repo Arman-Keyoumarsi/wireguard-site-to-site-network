@@ -46,6 +46,31 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 
 Example Playbook
 ----------------
+
+## Inventory
+```yml
+wg:
+ hosts:
+   192.168.0.70:
+     local_ip: 192.168.0.70
+     public_ip: 192.168.0.70
+     wg_ip: 10.13.113.1/24
+     ListenPort: 5566
+     allowed_ips: 10.10.0.0/16, 10.13.113.1/24
+     wireguard_post_up: true
+     wireguard_post_down: true
+   192.168.0.71:
+     local_ip: 192.168.0.71
+     public_ip: 192.168.0.71
+     wg_ip: 10.13.113.2/24
+     ListenPort: 5566
+     allowed_ips: 192.168.4.0/24, 10.13.113.2/24
+     wireguard_post_up: true
+     wireguard_post_down: true
+```
+
+
+## Playboom
 ```yml
 ---
 - hosts: wg
