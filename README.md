@@ -41,7 +41,7 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 
 Example Playbook
 ----------------
-´´´yml
+```yml
 ---
 - hosts: wg
   gather_facts: yes
@@ -57,7 +57,7 @@ Example Playbook
           - client_name: Laptop
             ip: 10.13.113.11/32
             key: if4Za/1xhb1HgpRZqA3AN5n8d4At8FWYZYsqNo0XYi8=
-´´´
+```
 License
 -------
 
