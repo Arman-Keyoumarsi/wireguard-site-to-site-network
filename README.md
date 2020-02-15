@@ -3,6 +3,11 @@ WireGuard Site to Site Network
 
 This role enables you to create a mesh network of fully connected WireGuard servers and add any additional client to all the servers. This gives you the ability to create a geo-location diverse vpn infrastructure on demand. 
 
+<p align="center">
+  <img width="460" height="300" src="">
+</p>
+
+
 Requirements
 ------------
 
@@ -17,10 +22,10 @@ There are Additional variables that can be setup for the following:
  * wireguard_path: change the default path for config and key files.
  * wireguard_network_name: Change the default Wireguard interface name
  * wireguard_clinet_peers: Enable additional client configuration for mobile clients
-  * The shall include sub vars as follow:
-   * - client_name: Client name 
-   * ip: Wireguard ip of the client
-   * key: Client public key 
+    * The shall include sub vars as follow:
+      * '- client_name: Client name' 
+      * ip: Wireguard ip of the client
+      * key: Client public key 
 
 To make sure we have full flexibility for configuring each node independently there are number of required variables that need to be defined in hostvars. 
 
@@ -41,7 +46,7 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 
 Example Playbook
 ----------------
-
+```yml
 ---
 - hosts: wg
   gather_facts: yes
@@ -57,7 +62,7 @@ Example Playbook
           - client_name: Laptop
             ip: 10.13.113.11/32
             key: if4Za/1xhb1HgpRZqA3AN5n8d4At8FWYZYsqNo0XYi8=
-
+```
 License
 -------
 
