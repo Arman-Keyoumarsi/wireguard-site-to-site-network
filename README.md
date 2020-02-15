@@ -4,7 +4,7 @@ WireGuard Site to Site Network
 This role enables you to create a mesh network of fully connected WireGuard servers and add any additional client to all the servers. This gives you the ability to create a geo-location diverse vpn infrastructure on demand. 
 
 <p align="center">
-  <img width="460" height="300" src="">
+  <img width="460" height="300" src="/files/WireGuard.png">
 </p>
 
 
