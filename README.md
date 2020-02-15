@@ -18,7 +18,7 @@ There are Additional variables that can be setup for the following:
  * wireguard_network_name: Change the default Wireguard interface name
  * wireguard_clinet_peers: Enable additional client configuration for mobile clients
     * The shall include sub vars as follow:
-      * - client_name: Client name 
+      * '- client_name: Client name' 
       * ip: Wireguard ip of the client
       * key: Client public key 
 
