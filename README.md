@@ -17,10 +17,10 @@ There are Additional variables that can be setup for the following:
  * wireguard_path: change the default path for config and key files.
  * wireguard_network_name: Change the default Wireguard interface name
  * wireguard_clinet_peers: Enable additional client configuration for mobile clients
-  * The shall include sub vars as follow:
-   * - client_name: Client name 
-   * ip: Wireguard ip of the client
-   * key: Client public key 
+    * The shall include sub vars as follow:
+      * - client_name: Client name 
+      * ip: Wireguard ip of the client
+      * key: Client public key 
 
 To make sure we have full flexibility for configuring each node independently there are number of required variables that need to be defined in hostvars. 
 
