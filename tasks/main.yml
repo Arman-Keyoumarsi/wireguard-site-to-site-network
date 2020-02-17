@@ -39,7 +39,7 @@
       name: wireguard
       state: present
 
-- name : Set ip forwarding DNS for WG
+- name: Set ip forwarding DNS for WG
   sysctl:
     name: net.ipv4.ip_forward
     value: '1'
@@ -68,7 +68,7 @@
 - name: Read public key
   slurp:
     src: "{{ wireguard_path }}/publickey"
-  register: public  
+  register: public 
 
 - name: Generate configs
   template:
