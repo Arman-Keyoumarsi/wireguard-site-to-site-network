@@ -2,7 +2,7 @@ galaxy_info:
   author: Arman Keyoumarsi
   description: Build site to site  vpn network between all the given nodes with all acting as a Server
   company: Rmaan LLC
-  
+
   issue_tracker_url: https://github.com/Arman-Keyoumarsi/wireguard-site-to-site-network
 
   license: license MIT
@@ -16,13 +16,13 @@ galaxy_info:
   - name: Debian
     versions:
      - all
-  
+
   galaxy_tags:
     - wireguard
-    - site to site
+    - sitetosite
     - vpn
     - network
     - mesh
 
 dependencies: []
-  
+
