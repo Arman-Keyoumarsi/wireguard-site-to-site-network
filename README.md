@@ -75,7 +75,7 @@ wg:
 ```
 
 
-## Playboom
+## Playbook
 ```yml
 ---
 - hosts: wg
