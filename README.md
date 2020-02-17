@@ -3,7 +3,7 @@ WireGuard Site to Site Network
 
 This role enables you to create a mesh network of fully connected WireGuard servers and add any additional client to all the servers. This gives you the ability to create a geo-location diverse vpn infrastructure on demand. 
 
-[![Ansible Role](https://img.shields.io/ansible/role/d/33136)](https://galaxy.ansible.com/arman_keyoumarsi/wireguard_site_to_site_network)
+[![Ansible Role](https://img.shields.io/ansible/role/d/46588)](https://galaxy.ansible.com/arman_keyoumarsi/wireguard_site_to_site_network) [![Ansible Quality](https://img.shields.io/ansible/quality/46588)](https://galaxy.ansible.com/arman_keyoumarsi/wireguard_site_to_site_network)
 
 <p align="center">
   <img src="/files/WireGuard.png">
