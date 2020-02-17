@@ -39,6 +39,16 @@
       name: wireguard
       state: present
 
+- name : Set ip forwarding DNS for WG
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    sysctl_file: /etc/sysctl.d/wg.conf
+    sysctl_set: yes
+    state: present
+    reload: yes
+  register: dns_reboot
+
 - name: Read private key if it exist
   stat:
     path: "{{ wireguard_path }}/privatekey"
@@ -88,3 +98,9 @@
 - name: Remove dependencies that are no longer required
   apt:
       autoremove: yes
+
+- name: Reboot immediately if there was a change.
+  shell: "sleep 5 && reboot"
+  async: 1
+  poll: 0
+  when: dns_reboot is changed
