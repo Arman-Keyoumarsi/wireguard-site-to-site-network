@@ -18,10 +18,11 @@ galaxy_info:
      - all
   
   galaxy_tags:
-    - WireGuard
-    - Site-to-Site
-    - VPN
-    - Network
+    - wireguard
+    - site to site
+    - vpn
+    - network
+    - mesh
 
 dependencies: []
   
